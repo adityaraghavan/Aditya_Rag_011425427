@@ -1,0 +1,19 @@
+Sender	-	0	Receiver	-	1	Message	-	M
+Sender	-	1	Receiver	-	4	Message	-	M
+Sender	-	4	Receiver	-	5	Message	-	M
+Sender	-	5	Receiver	-	2	Message	-	M
+Sender	-	2	Receiver	-	1	Message	-	M
+Sender	-	1	Receiver	-	2	Message	-	ALREADY
+Sender	-	2	Receiver	-	0	Message	-	M
+Sender	-	0	Receiver	-	2	Message	-	ALREADY
+Sender	-	2	Receiver	-	5	Message	-	PARENT
+Sender	-	5	Receiver	-	4	Message	-	PARENT
+Sender	-	4	Receiver	-	1	Message	-	PARENT
+Sender	-	1	Receiver	-	2	Message	-	M
+Sender	-	2	Receiver	-	1	Message	-	ALREADY
+Sender	-	1	Receiver	-	0	Message	-	PARENT
+Sender	-	0	Receiver	-	3	Message	-	M
+Sender	-	3	Receiver	-	0	Message	-	PARENT
+Sender	-	0	Receiver	-	2	Message	-	M
+Sender	-	2	Receiver	-	0	Message	-	ALREADY
+Terminate!
