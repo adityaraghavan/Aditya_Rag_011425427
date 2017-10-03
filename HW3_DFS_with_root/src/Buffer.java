@@ -7,8 +7,17 @@ public class Buffer extends Observable {
 	
 	// Message sent via the buffer
     private Message message;
+    private Processor sourceProcessor;
+    
+    public Processor getSourceProcessor() {
+		return sourceProcessor;
+	}
 
-    /**
+	public void setSourceProcessor(Processor sourceProcessor) {
+		this.sourceProcessor = sourceProcessor;
+	}
+
+	/**
      * Default constructor
      */
     public Buffer(){
@@ -35,10 +44,10 @@ public class Buffer extends Observable {
      * @param message
      * @param sourceProcessor
      */
-    public void setMessage(Message message, Processor sourceProcessor ) {
+    public void setMessage(Message message) {
         this.message = message;
         setChanged();
-        notifyObservers(sourceProcessor);
+        notifyObservers();
     }
 }
 

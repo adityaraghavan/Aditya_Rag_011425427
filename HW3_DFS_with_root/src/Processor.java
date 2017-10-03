@@ -48,7 +48,8 @@ public class Processor implements Observer {
 	 */
 	public void sendMessgeToMyBuffer(Message message, Processor sourceProcessor) {
 		System.out.println("Sender\t-\t" + sourceProcessor.id + "\tReceiver\t-\t" + this.id + "\tMessage\t-\t" + message.name());
-		messageBuffer.setMessage(message, sourceProcessor);
+		messageBuffer.setSourceProcessor(sourceProcessor);
+		messageBuffer.setMessage(message);
 	}
 
 	/**
@@ -56,25 +57,25 @@ public class Processor implements Observer {
 	 */
 	public void update(Observable observable, Object arg) {
 
-		Processor sourceProcessor = (Processor) arg;
-
+//		Processor sourceProcessor = (Processor) arg;
+		Buffer pBuffer = (Buffer) observable;
 		// Check type of message received
 		switch(this.messageBuffer.getMessage()){
 
 		case M: 
 			if(null == this.parentProcessor){
 				// Set source processor as parent to this processor
-				this.parentProcessor = sourceProcessor;
+				this.parentProcessor = pBuffer.getSourceProcessor();
 				// Remove source processor from list of unexplored neighbors
-				removeFromUnexplored(sourceProcessor);
+				removeFromUnexplored(pBuffer.getSourceProcessor());
 				// Continue with DFS
 				explore();
 			}
 			else{
 				// Reply if message already received
-				sourceProcessor.sendMessgeToMyBuffer(Message.ALREADY, this);
+				pBuffer.getSourceProcessor().sendMessgeToMyBuffer(Message.ALREADY, this);
 				// Remove source processor from list of unexplored neighbors
-				removeFromUnexplored(sourceProcessor);
+				removeFromUnexplored(pBuffer.getSourceProcessor());
 			}
 			break;
 
@@ -85,7 +86,7 @@ public class Processor implements Observer {
 
 		case PARENT: 
 			// Set source processor as child of this processor
-			sourceProcessor.children.add(this);
+			pBuffer.getSourceProcessor().children.add(this);
 			// Continue with DFS
 			explore();
 			break;
