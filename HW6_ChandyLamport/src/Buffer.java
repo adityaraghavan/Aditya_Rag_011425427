@@ -8,50 +8,51 @@ import java.util.Observable;
  * @author Sample
  * @version 1.0
  */
-//A channel should have a buffer associated with it.
+// A channel should have a buffer associated with it.
 public class Buffer extends Observable {
-    String label;
-    private List<Message> messages;
+	String label;
+	private List<Message> messages;
 
-    /**
-     * Creates empty buffer
-     */
-    public Buffer() {
-        this.messages = new ArrayList<>();
-    }
+	/**
+	 * Creates empty buffer
+	 */
+	public Buffer() {
+		this.messages = new ArrayList<>();
+	}
 
-    /**
-     * Creates empty buffer
-     */
-    public Buffer(String label) {
-        messages = new ArrayList<>();
-        this.label = label;
-    }
+	/**
+	 * Creates empty buffer
+	 */
+	public Buffer(String label) {
+		messages = new ArrayList<>();
+		this.label = label;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getLabel() {
+		return label;
+	}
 
-    /**
-     * @return Message from the buffer
-     */
-    public Message getMessage(int index) {
-        return messages.get(index);
-    }
+	/**
+	 * @return Message from the buffer
+	 */
+	public Message getMessage(int index) {
+		return messages.get(index);
+	}
 
-    /**
-     * Sets the message and notifies the observers with the sender node's information
-     *
-     * @param message Message to be stored in the buffer
-     */
-    public void saveMessage(Message message) {
-        this.messages.add(message);
-        setChanged();
-        notifyObservers(messages.size()-1);
-    }
+	/**
+	 * Sets the message and notifies the observers with the sender node's
+	 * information
+	 *
+	 * @param message Message to be stored in the buffer
+	 */
+	public void saveMessage(Message message) {
+		this.messages.add(message);
+		setChanged();
+		// Pass Message as an argument 
+		notifyObservers(message);
+	}
 
-    int getTotalMessageCount() {
-        return messages.size();
-    }
+	int getTotalMessageCount() {
+		return messages.size();
+	}
 }
-

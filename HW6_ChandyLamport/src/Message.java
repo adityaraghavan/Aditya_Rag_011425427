@@ -1,5 +1,7 @@
 public class Message {
-	MessageType messageType;
+
+	private MessageType messageType;
+	private Processor from;
 
 	/**
 	 * THe processor that is sending a message
@@ -12,8 +14,6 @@ public class Message {
 	public void setFrom(Processor from) {
 		this.from = from;
 	}
-
-	Processor from; //source
 	
 	public Message(MessageType mt) {
 		this.messageType=mt;
@@ -21,5 +21,10 @@ public class Message {
 
 	public MessageType getMessageType() {
 		return messageType;
+	}
+	
+	@Override
+	public String toString() {
+		return "Message [messageType = " + messageType + ", from = p" + from.getProcessorId() + "]";
 	}
 }
